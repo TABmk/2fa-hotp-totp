@@ -1,4 +1,4 @@
-[<img src="https://img.shields.io/npm/v/2fa-hotp-totp">](https://www.npmjs.com/package/2fa-hotp-totp) [<img src="https://img.shields.io/npm/l/2fa-hotp-totp">](https://github.com/TABmk/2fa-hotp-totp/blob/master/LICENSE) [<img src="https://img.shields.io/npm/dm/2fa-hotp-totp">](https://www.npmjs.com/package/2fa-hotp-totp)
+[<img src="https://img.shields.io/npm/v/2fa-hotp-totp">](https://www.npmjs.com/package/2fa-hotp-totp) [<img src="https://img.shields.io/npm/l/2fa-hotp-totp">](https://github.com/TABmk/2fa-hotp-totp/blob/master/LICENSE) [<img src="https://img.shields.io/npm/dm/2fa-hotp-totp">](https://www.npmjs.com/package/2fa-hotp-totp) [<img src="https://img.shields.io/bundlephobia/minzip/2fa-hotp-totp">](https://www.npmjs.com/package/2fa-hotp-totp)
 
 __Help__ [<img src="https://img.shields.io/github/issues/tabmk/2fa-hotp-totp">](https://github.com/TABmk/2fa-hotp-totp/issues?q=is%3Aopen+is%3Aissue) [<img src="https://img.shields.io/github/issues-pr/tabmk/2fa-hotp-totp">](https://github.com/TABmk/2fa-hotp-totp/pulls?q=is%3Aopen+is%3Apr)
 
@@ -11,6 +11,8 @@ __Help__ [<img src="https://img.shields.io/github/issues/tabmk/2fa-hotp-totp">](
 #### __Rate me__ [<img src="https://img.shields.io/github/stars/tabmk/2fa-hotp-totp?style=social">](https://github.com/TABmk/2fa-hotp-totp)
 
 # __2FA-HOTP-TOTP__
+
+Zero-dependency, **<1kB gzipped** [<img src="https://img.shields.io/bundlephobia/minzip/2fa-hotp-totp">](https://www.npmjs.com/package/2fa-hotp-totp)
 
 My implementation of 2FA H/TOTP algorithms in TypeScript + base32 encoder for creating links for authenticator programs like [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
 

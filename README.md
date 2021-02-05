@@ -1,6 +1,6 @@
-[<img src="https://img.shields.io/npm/v/2FA-HOTP-TOTP">](https://www.npmjs.com/package/2FA-HOTP-TOTP) [<img src="https://img.shields.io/npm/l/2FA-HOTP-TOTP">](https://github.com/TABmk/2FA-HOTP-TOTP/blob/master/LICENSE) [<img src="https://img.shields.io/npm/dm/2FA-HOTP-TOTP">](https://www.npmjs.com/package/2FA-HOTP-TOTP)
+[<img src="https://img.shields.io/npm/v/2fa-hotp-totp">](https://www.npmjs.com/package/2fa-hotp-totp) [<img src="https://img.shields.io/npm/l/2fa-hotp-totp">](https://github.com/TABmk/2fa-hotp-totp/blob/master/LICENSE) [<img src="https://img.shields.io/npm/dm/2fa-hotp-totp">](https://www.npmjs.com/package/2fa-hotp-totp)
 
-__Help__ [<img src="https://img.shields.io/github/issues/tabmk/2FA-HOTP-TOTP">](https://github.com/TABmk/2FA-HOTP-TOTP/issues?q=is%3Aopen+is%3Aissue) [<img src="https://img.shields.io/github/issues-pr/tabmk/2FA-HOTP-TOTP">](https://github.com/TABmk/2FA-HOTP-TOTP/pulls?q=is%3Aopen+is%3Apr)
+__Help__ [<img src="https://img.shields.io/github/issues/tabmk/2fa-hotp-totp">](https://github.com/TABmk/2fa-hotp-totp/issues?q=is%3Aopen+is%3Aissue) [<img src="https://img.shields.io/github/issues-pr/tabmk/2fa-hotp-totp">](https://github.com/TABmk/2fa-hotp-totp/pulls?q=is%3Aopen+is%3Apr)
 
 <p align="center">
   <img src="img/1.png" />
@@ -8,7 +8,7 @@ __Help__ [<img src="https://img.shields.io/github/issues/tabmk/2FA-HOTP-TOTP">](
 
 ---
 
-#### __Rate me__ [<img src="https://img.shields.io/github/stars/tabmk/2FA-HOTP-TOTP?style=social">](https://github.com/TABmk/2FA-HOTP-TOTP)
+#### __Rate me__ [<img src="https://img.shields.io/github/stars/tabmk/2fa-hotp-totp?style=social">](https://github.com/TABmk/2fa-hotp-totp)
 
 # __2FA-HOTP-TOTP__
 
@@ -18,7 +18,7 @@ My implementation of 2FA H/TOTP algorithms in TypeScript + base32 encoder for cr
 ###### Specifications:
 - HOTP - [RFC 4226](https://tools.ietf.org/html/rfc4226)
 - TOTP - [RFC 6238](https://tools.ietf.org/html/rfc6238)
-- Base32 - [RFC 4648](https://tools.ietf.org/html/rfc4648) (without paddings, thanks to [@LinusU](https://github.com/LinusU)
+- Base32 - [RFC 4648](https://tools.ietf.org/html/rfc4648) (without paddings, thanks to [@LinusU](https://github.com/LinusU))
 
 ---
 
@@ -36,9 +36,9 @@ yarn add 2FA-HOTP-TOTP
 
 #### Import
 ```
-// import { TFA } from '2FA-HOTP-TOTP';
+import { TFA } from '2FA-HOTP-TOTP';
    OR
-// const { TFA } = require('2FA-HOTP-TOTP');
+const { TFA } = require('2FA-HOTP-TOTP');
 ```
 #### HOTP
 ###### Generate

@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@types/node": "^14.14.25"
+  },
+  "name": "2FA-HOTP-TOTP",
+  "version": "1.0.0",
+  "description": "Zero dependency HOTP/TOTP 2FA",
+  "main": "bin/index.js",
+  "repository": "https://github.com/TABmk/2FA-HOTP-TOTP.git",
+  "author": "TAB_mk",
+  "license": "MIT",
+  "keywords": [
+   "2FA", "HOTP", "TOTP"
+  ],
+  "author": "TAB_mk <tabmk.contact@gmail.com>"
+}

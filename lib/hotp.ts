@@ -67,9 +67,10 @@ export const verifyHOTP = ({ token, key, window = 1, counter = 0}: {
   window?: number,
   counter?: number,
 }): Number|null => {
+  let _counter = counter;
   for(let i = counter - window; i <= counter + window; ++i) {
-    const generateToken = generateHOTP({key, counter});
-
+    _counter = i;
+    const generateToken = generateHOTP({key, counter: _counter});
     if (timingSafeEqual(Buffer.from(token), Buffer.from(generateToken))) {
       return i - counter;
     }

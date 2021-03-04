@@ -3,7 +3,7 @@
     "@types/node": "^14.14.25"
   },
   "name": "2fa-hotp-totp",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Zero dependency HOTP/TOTP 2FA",
   "main": "index.js",
   "repository": "https://github.com/TABmk/2FA-HOTP-TOTP.git",

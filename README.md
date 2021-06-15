@@ -23,6 +23,9 @@ My implementation of 2FA H/TOTP algorithms in TypeScript + base32 encoder for cr
 - Base32 - [RFC 4648](https://tools.ietf.org/html/rfc4648) (without paddings, thanks to [@LinusU](https://github.com/LinusU))
 
 ---
+You can find compiled .js files on [Releases page](https://github.com/TABmk/2FA-HOTP-TOTP/releases)
+
+---
 
 ## __Install__
 

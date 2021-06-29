@@ -1,18 +1,18 @@
 /**
  * Base32 encoder without padding, thanks @LinusU
- * @param   {String} secret
- * @returns {String} base32 encoded secret
+ * @param   secret
+ * @returns base32 encoded secret
  */
-export const encodeBase32 = (secret: String): String => {
+export default (secret: string) => {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 
   const buf = Buffer.from(secret);
 
   const arr = new Uint8Array(buf);
 
-  let bits  = 0;
+  let bits = 0;
   let value = 0;
-  let str   = '';
+  let str = '';
 
   for (let i = 0; i < arr.length; i += 1) {
     value = (value << 8) | arr[i];
@@ -29,4 +29,4 @@ export const encodeBase32 = (secret: String): String => {
   }
 
   return str;
-}
+};

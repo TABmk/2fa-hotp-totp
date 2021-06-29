@@ -14,7 +14,7 @@ __Help__ [<img src="https://img.shields.io/github/issues/tabmk/2fa-hotp-totp">](
 
 Zero-dependency, **<1kB gzipped** [<img src="https://img.shields.io/bundlephobia/minzip/2fa-hotp-totp">](https://www.npmjs.com/package/2fa-hotp-totp)
 
-My implementation of 2FA H/TOTP algorithms in TypeScript + base32 encoder for creating links for authenticator programs like [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
+My implementation of 2FA HOTP/TOTP algorithms in TypeScript + base32 encoder for creating links for authenticator programs like [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
 
 [Read more](https://github.com/google/google-authenticator/wiki/Key-Uri-Format) about `otpauth://` links
 ###### Specifications:
@@ -23,7 +23,28 @@ My implementation of 2FA H/TOTP algorithms in TypeScript + base32 encoder for cr
 - Base32 - [RFC 4648](https://tools.ietf.org/html/rfc4648) (without paddings, thanks to [@LinusU](https://github.com/LinusU))
 
 ---
-You can find compiled .js files on [Releases page](https://github.com/TABmk/2FA-HOTP-TOTP/releases)
+
+You can compile .js files by command `yarn build` or `npm run build`
+
+And test code with `yarn test` or `npm test`
+
+---
+# __v2 is here__ (almost)
+
+v2 brings better TypeScript support and some changes.
+And due I want to keep this package <1kB gzipped, I'll move types to DefinitelyTyped (you'll need to install types manually). I need some time to do that and I will not update the npm package until I have done it. Only the Github repository will be up to date.
+
+#### Changes
+- ⚠️ __Breaking__ ⚠️ New imports. Use only what you need. If you using v1 and want to migrate to v2, check `Usage > import`
+- TypeScript declaration
+- JSDoc's
+- `test` and `build` commands
+- Bugfixes
+
+### Use docs without leaving your editor
+
+<img src="img/2.jpg" />
+<img src="img/3.jpg" />
 
 ---
 
@@ -41,14 +62,14 @@ yarn add 2FA-HOTP-TOTP
 
 #### Import
 ```
-import { TFA } from '2FA-HOTP-TOTP';
-   OR
-const { TFA } = require('2FA-HOTP-TOTP');
+import { HOTP, TOTP, base32 } from '2FA-HOTP-TOTP';
+      OR
+const { HOTP, TOTP, base32 } = require('2FA-HOTP-TOTP');
 ```
 #### HOTP
 ###### Generate
 ```
-TFA.HOTP.generate({
+HOTP.generate({
   key: 'test',
   counter: 0, // optional
 });
@@ -57,7 +78,7 @@ TFA.HOTP.generate({
 ```
 ###### Validate
 ```
-TFA.HOTP.validate({
+HOTP.validate({
   token: '123123', // length must be 6
   key: 'test',
   window: 1,       // optional
@@ -70,7 +91,7 @@ TFA.HOTP.validate({
 #### TOTP
 ###### Generate
 ```
-TFA.TOTP.generate({
+TOTP.generate({
   key: 'test',
   time: 30, // optional
 });
@@ -79,7 +100,7 @@ TFA.TOTP.generate({
 ```
 ###### Validate
 ```
-TFA.TOTP.validate({
+TOTP.validate({
   token: '123123', // length must be 6
   key: 'test',
   window: 1,       // optional
@@ -91,7 +112,7 @@ TFA.TOTP.validate({
 
 #### Base32
 ```
-TFA.base32('test');
+base32('test');
 
 // => ORSXG5A
 ```
@@ -114,7 +135,7 @@ Arguments (object):
 |`counter`|❌|moving factor ([read page 6](https://tools.ietf.org/html/rfc4226))|0|
 
 
-Returns **string** of 6 int, because it must be always 6 ing length and first can be zero
+Returns **string** of 6 digit, because it must be always 6 digit length and first can be zero
 
 ###### HOTP.validate
 Arguments (object):
@@ -150,7 +171,7 @@ Arguments (object):
 |`key`|✅|unique secret key for user||
 |`time`|❌|time-step in seconds (default recomended)|30|
 
-Returns **string** of 6 int, because it must be always 6 ing length and first can be zero
+Returns **string** of 6 digit, because it must be always 6 digit length and first can be zero
 
 ###### HOTP.validate
 Arguments (object):

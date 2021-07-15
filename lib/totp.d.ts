@@ -1,5 +1,3 @@
-import * as HOTP from './hotp';
-
 /**
  * TOTP = HOTP(K, T)
  *
@@ -9,18 +7,10 @@ import * as HOTP from './hotp';
  * @param time time-step in seconds (default recomended). Default: 30
  * @return 6 digit code as a string
  */
-export const generate = ({ key, time = 30 }: {
-  key: string,
-  time?: number,
-}) => {
-  const result = HOTP.generate({
-    key,
-    counter: Math.floor(Date.now() / 1000 / time),
-  });
-
-  return result;
-};
-
+export declare const generate: ({ key, time }: {
+    key: string;
+    time?: number;
+}) => string;
 /**
  * https://datatracker.ietf.org/doc/html/rfc6238#section-5.2
  *
@@ -30,20 +20,9 @@ export const generate = ({ key, time = 30 }: {
  * @param  time   time-step in seconds (default is recomended). Default: 30
  * @return null if nothing found or number between -window to +window if same code in steps found
  */
-export const validate = ({
-  token, key, window = 1, time = 30,
-}: {
-  token: string,
-  key: string,
-  window?: number,
-  time?: number,
-}): number | null => {
-  const result = HOTP.validate({
-    token,
-    key,
-    window,
-    counter: Math.floor(Date.now() / 1000 / time),
-  });
-
-  return result;
-};
+export declare const validate: ({ token, key, window, time, }: {
+    token: string;
+    key: string;
+    window?: number;
+    time?: number;
+}) => number | null;

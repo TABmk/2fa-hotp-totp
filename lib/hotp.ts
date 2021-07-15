@@ -1,10 +1,10 @@
 import { createHmac, timingSafeEqual } from 'crypto';
 
 /**
- * https://tools.ietf.org/html/rfc4226 page 5
+ * https://datatracker.ietf.org/doc/html/rfc4226#section-5.1
  *
- * @param   8-byte counter value, the moving factor
- * @returns buffer
+ * @param  8-byte counter value, the moving factor
+ * @return buffer
  */
 const calcCounter = (value: number) => {
   // <Buffer 00 00 00 00 00 00 00 00>
@@ -18,15 +18,13 @@ const calcCounter = (value: number) => {
 /**
  * HOTP(K,C) = Truncate(HMAC-SHA-1(K,C))
  *
- * https://tools.ietf.org/html/rfc4226
- * Page 6
+ * https://datatracker.ietf.org/doc/html/rfc4226#section-5.2
  *
- * @param options
- * @param options.key unique secret key for user
- * @param [options.counter=0] moving factor
- * @returns 6 digit code as a string
+ * @param key     unique secret key for user
+ * @param counter moving factor. Default: 0
+ * @return 6 digit code as a string
  */
-export const generateHOTP = ({ key, counter = 0 }: {
+export const generate = ({ key, counter = 0 }: {
   key: string,
   counter?: number,
 }) => {
@@ -54,15 +52,19 @@ export const generateHOTP = ({ key, counter = 0 }: {
 };
 
 /**
- * @param options
- * @param options.token       code, provided by user
- * @param options.key         unique secret key for user
- * @param [options.window=1]  counter values window
- * @param [options.counter=0] moving factor
- * @returns number or null
+ * https://datatracker.ietf.org/doc/html/rfc4226#section-7.2
+ *
+ * @param token   code, provided by user
+ * @param key     unique secret key for user
+ * @param window  counter values window. Default: 1
+ * @param counter moving factor. Default: 0
+ * @return null if nothing found or number between -window to +window if same code in steps found
  */
-export const verifyHOTP = ({
-  token, key, window = 1, counter = 0,
+export const validate = ({
+  token,
+  key,
+  window = 1,
+  counter = 0,
 }: {
   token: string,
   key: string,
@@ -74,7 +76,7 @@ export const verifyHOTP = ({
   for (let i = counter - window; i <= counter + window; ++i) {
     redefCounter = i;
 
-    const generateToken = generateHOTP({ key, counter: redefCounter });
+    const generateToken = generate({ key, counter: redefCounter });
 
     if (timingSafeEqual(Buffer.from(token), Buffer.from(generateToken))) {
       return i - counter;

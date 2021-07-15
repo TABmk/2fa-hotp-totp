@@ -1,9 +1,10 @@
 /**
  * Base32 encoder without padding, thanks @LinusU
- * @param   secret
- * @returns base32 encoded secret
+ * @param   secret text to be encoded
+ * @return base32 encoded secret
  */
-export default (secret: string) => {
+// eslint-disable-next-line
+export const base32 = (secret: string) => {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 
   const buf = Buffer.from(secret);

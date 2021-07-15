@@ -1,0 +1,383 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>2fa-hotp-totp</title>
+	<meta name="description" content="Documentation for 2fa-hotp-totp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">2fa-hotp-totp</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>2fa-hotp-totp</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><a href="https://www.npmjs.com/package/2fa-hotp-totp"><img src="https://img.shields.io/npm/v/2fa-hotp-totp"></a> <a href="https://github.com/TABmk/2fa-hotp-totp/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/2fa-hotp-totp"></a> <img src="https://badgen.net/npm/types/2fa-hotp-totp"></p>
+				<img src="https://badgen.net/npm/dt/2fa-hotp-totp">
+				<img src="https://badgen.net/npm/dm/2fa-hotp-totp">
+				<p><strong>Help</strong> <a href="https://github.com/TABmk/2fa-hotp-totp/issues?q=is%3Aopen+is%3Aissue"><img src="https://img.shields.io/github/issues/tabmk/2fa-hotp-totp"></a> <a href="https://github.com/TABmk/2fa-hotp-totp/pulls?q=is%3Aopen+is%3Apr"><img src="https://img.shields.io/github/issues-pr/tabmk/2fa-hotp-totp"></a></p>
+				<p align="center">
+					<img src="img/1.png" />
+				</p>
+				<hr>
+				<a href="#rate-me-" id="rate-me-" style="color: inherit; text-decoration: none;">
+					<h4><strong>Rate me</strong> <a href="https://github.com/TABmk/2fa-hotp-totp"><img src="https://img.shields.io/github/stars/tabmk/2fa-hotp-totp?style=social"></a></h4>
+				</a>
+				<a href="#2fa-hotp-totp" id="2fa-hotp-totp" style="color: inherit; text-decoration: none;">
+					<h1><strong>2FA-HOTP-TOTP</strong></h1>
+				</a>
+				<p>Zero-dependency <img src="https://badgen.net/bundlephobia/dependency-count/2fa-hotp-totp"></p>
+				<p> v2 and still __&lt;1kB gzipped__ <img src="https://badgen.net/bundlephobia/minzip/2fa-hotp-totp"></p>
+				<p>My implementation of 2FA HOTP/TOTP algorithms in TypeScript + base32 encoder for creating links for authenticator programs like <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Google Authenticator</a></p>
+				<p><a href="https://github.com/google/google-authenticator/wiki/Key-Uri-Format">Read more</a> about <code>otpauth://</code> links</p>
+				<a href="#specifications" id="specifications" style="color: inherit; text-decoration: none;">
+					<h6>Specifications:</h6>
+				</a>
+				<ul>
+					<li>HOTP - <a href="https://datatracker.ietf.org/doc/html/rfc4226">RFC 4226</a></li>
+					<li>TOTP - <a href="https://datatracker.ietf.org/doc/html/rfc6238">RFC 6238</a></li>
+					<li>Base32 - <a href="https://datatracker.ietf.org/doc/html/rfc4648">RFC 4648</a> (without paddings, thanks to <a href="https://github.com/LinusU">@LinusU</a>)</li>
+				</ul>
+				<hr>
+				<p>You can compile .js files by command <code>yarn build</code> or <code>npm run build</code></p>
+				<p>And test code with <code>yarn test</code> or <code>npm test</code></p>
+				<hr>
+				<a href="#v2-is-here-almost" id="v2-is-here-almost" style="color: inherit; text-decoration: none;">
+					<h1><strong>v2 is here</strong> (almost)</h1>
+				</a>
+				<p>v2 brings better TypeScript support and some changes.
+				And due I want to keep this package &lt;1kB gzipped, I&#39;ll move types to DefinitelyTyped (you&#39;ll need to install types manually). I need some time to do that and I will not update the npm package until I have done it. Only the Github repository will be up to date.</p>
+				<a href="#changes" id="changes" style="color: inherit; text-decoration: none;">
+					<h4>Changes</h4>
+				</a>
+				<ul>
+					<li>⚠️ <strong>Breaking</strong> ⚠️ New imports. Use only what you need. If you using v1 and want to migrate to v2, check <code>Usage &gt; import</code></li>
+					<li>TypeScript declaration</li>
+					<li>JSDoc&#39;s</li>
+					<li><code>test</code> and <code>build</code> commands</li>
+					<li>Bugfixes</li>
+				</ul>
+				<a href="#use-docs-without-leaving-your-editor" id="use-docs-without-leaving-your-editor" style="color: inherit; text-decoration: none;">
+					<h3>Use docs without leaving your editor</h3>
+				</a>
+				<img src="img/2.jpg" />
+				<img src="img/3.jpg" />
+				<hr>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2><strong>Install</strong></h2>
+				</a>
+				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> 2</span><span style="color: #001080">fa</span><span style="color: #000000">-</span><span style="color: #001080">hotp</span><span style="color: #000000">-</span><span style="color: #001080">totp</span>
+
+<span style="color: #000000">    </span><span style="color: #001080">or</span>
+
+<span style="color: #001080">yarn</span><span style="color: #000000"> </span><span style="color: #001080">add</span><span style="color: #000000"> 2</span><span style="color: #001080">fa</span><span style="color: #000000">-</span><span style="color: #001080">hotp</span><span style="color: #000000">-</span><span style="color: #001080">totp</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2><strong>Usage</strong></h2>
+				</a>
+				<a href="#import" id="import" style="color: inherit; text-decoration: none;">
+					<h4>Import</h4>
+				</a>
+				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">HOTP</span><span style="color: #000000">, </span><span style="color: #001080">TOTP</span><span style="color: #000000">, </span><span style="color: #001080">base32</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;2fa-hotp-totp&#039;</span><span style="color: #000000">;</span>
+<span style="color: #000000">      </span><span style="color: #0070C1">OR</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">HOTP</span><span style="color: #000000">, </span><span style="color: #0070C1">TOTP</span><span style="color: #000000">, </span><span style="color: #0070C1">base32</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;2fa-hotp-totp&#039;</span><span style="color: #000000">);</span>
+</code></pre>
+				<a href="#hotp" id="hotp" style="color: inherit; text-decoration: none;">
+					<h4>HOTP</h4>
+				</a>
+				<a href="#generate" id="generate" style="color: inherit; text-decoration: none;">
+					<h6>Generate</h6>
+				</a>
+				<pre><code><span style="color: #0070C1">HOTP</span><span style="color: #000000">.</span><span style="color: #795E26">generate</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">counter:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #008000">// =&gt; 941117</span>
+</code></pre>
+				<a href="#validate" id="validate" style="color: inherit; text-decoration: none;">
+					<h6>Validate</h6>
+				</a>
+				<pre><code><span style="color: #0070C1">HOTP</span><span style="color: #000000">.</span><span style="color: #795E26">validate</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">token:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;123123&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// length must be 6</span>
+<span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">window:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,       </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">counter:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">,      </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #008000">// =&gt; time-step (number) or null</span>
+</code></pre>
+				<a href="#totp" id="totp" style="color: inherit; text-decoration: none;">
+					<h4>TOTP</h4>
+				</a>
+				<a href="#generate-1" id="generate-1" style="color: inherit; text-decoration: none;">
+					<h6>Generate</h6>
+				</a>
+				<pre><code><span style="color: #0070C1">TOTP</span><span style="color: #000000">.</span><span style="color: #795E26">generate</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">time:</span><span style="color: #000000"> </span><span style="color: #098658">30</span><span style="color: #000000">, </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #008000">// =&gt; 432486</span>
+</code></pre>
+				<a href="#validate-1" id="validate-1" style="color: inherit; text-decoration: none;">
+					<h6>Validate</h6>
+				</a>
+				<pre><code><span style="color: #0070C1">TOTP</span><span style="color: #000000">.</span><span style="color: #795E26">validate</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">token:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;123123&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// length must be 6</span>
+<span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">window:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,       </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">time:</span><span style="color: #000000"> </span><span style="color: #098658">30</span><span style="color: #000000">,        </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #008000">// =&gt; time-step (number) or null</span>
+</code></pre>
+				<a href="#base32" id="base32" style="color: inherit; text-decoration: none;">
+					<h4>Base32</h4>
+				</a>
+				<pre><code><span style="color: #795E26">base32</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// =&gt; ORSXG5A</span>
+</code></pre>
+				<a href="#description" id="description" style="color: inherit; text-decoration: none;">
+					<h2><strong>Description</strong></h2>
+				</a>
+				<p><em>All code also covered with JSDoc with links to specifications and its pages</em></p>
+				<a href="#hotp-1" id="hotp-1" style="color: inherit; text-decoration: none;">
+					<h4>HOTP</h4>
+				</a>
+				<p>Implementation of <a href="https://datatracker.ietf.org/doc/html/rfc4226">RFC 4226</a></p>
+				<p><em>HOTP(K,C) = Truncate(HMAC-SHA-1(K,C))</em></p>
+				<a href="#hotpgenerate" id="hotpgenerate" style="color: inherit; text-decoration: none;">
+					<h6>HOTP.generate</h6>
+				</a>
+				<p>Arguments (object):</p>
+				<table>
+					<thead>
+						<tr>
+							<th>obj.*</th>
+							<th>Required</th>
+							<th>Description</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>key</code></td>
+							<td>✅</td>
+							<td>unique secret key for user</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><code>counter</code></td>
+							<td>❌</td>
+							<td>moving factor (<a href="https://datatracker.ietf.org/doc/html/rfc4226">read page 6</a>)</td>
+							<td>0</td>
+						</tr>
+				</tbody></table>
+				<p>Returns <strong>string</strong> of 6 digit, because it must be always 6 digit length and first can be zero</p>
+				<a href="#hotpvalidate" id="hotpvalidate" style="color: inherit; text-decoration: none;">
+					<h6>HOTP.validate</h6>
+				</a>
+				<p>Arguments (object):</p>
+				<table>
+					<thead>
+						<tr>
+							<th>obj.*</th>
+							<th>Required</th>
+							<th>Description</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>token</code></td>
+							<td>✅</td>
+							<td>code, provided by user</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><code>key</code></td>
+							<td>✅</td>
+							<td>unique secret key for user</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><code>window</code></td>
+							<td>❌</td>
+							<td>counter values window</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td><code>counter</code></td>
+							<td>❌</td>
+							<td>moving factor (<a href="https://datatracker.ietf.org/doc/html/rfc4226">read page 6</a>)</td>
+							<td>0</td>
+						</tr>
+				</tbody></table>
+				<p>Returns <strong>null</strong> if nothing found or number between <code>-window to +window</code> if same code in steps found</p>
+				<a href="#what-is-window" id="what-is-window" style="color: inherit; text-decoration: none;">
+					<h6>What is <code>window</code>:</h6>
+				</a>
+				<p>For example, if you using TOTP (HOTP with time) with 0 window, only current XX (30 by default) second code will be checked for verification. If you set 1, neighboring seconds code (+30 and -30) also checked.</p>
+				<p>One more example with time-step 30 sec:</p>
+				<ul>
+					<li>window 0 = only <code>04:20:00 - 04:20:30</code> will be checked</li>
+					<li>window 1 = <code>04:19:30 - 04:20:00</code>, <code>04:20:00 - 04:20:30</code> and <code>04:20:30 - 04:21:00</code> all steps codes (-1, 0, 1) checked</li>
+				</ul>
+				<a href="#totp-1" id="totp-1" style="color: inherit; text-decoration: none;">
+					<h4>TOTP</h4>
+				</a>
+				<p>Implementation of <a href="https://datatracker.ietf.org/doc/html/rfc6238">RFC 6238</a></p>
+				<p><em>TOTP = HOTP(K, T)</em></p>
+				<a href="#totpgenerate" id="totpgenerate" style="color: inherit; text-decoration: none;">
+					<h6>TOTP.generate</h6>
+				</a>
+				<p>Arguments (object):</p>
+				<table>
+					<thead>
+						<tr>
+							<th>obj.*</th>
+							<th>Required</th>
+							<th>Description</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>key</code></td>
+							<td>✅</td>
+							<td>unique secret key for user</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><code>time</code></td>
+							<td>❌</td>
+							<td>time-step in seconds (default recomended)</td>
+							<td>30</td>
+						</tr>
+				</tbody></table>
+				<p>Returns <strong>string</strong> of 6 digit, because it must be always 6 digit length and first can be zero</p>
+				<a href="#totpvalidate" id="totpvalidate" style="color: inherit; text-decoration: none;">
+					<h6>TOTP.validate</h6>
+				</a>
+				<p>Arguments (object):</p>
+				<table>
+					<thead>
+						<tr>
+							<th>obj.*</th>
+							<th>Required</th>
+							<th>Description</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>token</code></td>
+							<td>✅</td>
+							<td>code, provided by user</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><code>key</code></td>
+							<td>✅</td>
+							<td>unique secret key for user</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><code>window</code></td>
+							<td>❌</td>
+							<td>counter values window</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td><code>time</code></td>
+							<td>❌</td>
+							<td>time-step in seconds (default recomended)</td>
+							<td>30</td>
+						</tr>
+				</tbody></table>
+				<p>Returns <strong>null</strong> if nothing found or number between <code>-window to +window</code> if same code in steps found</p>
+				<p><a href="#what-is-window">👆 What is <code>window</code></a></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="modules/HOTP.html">HOTP</a>
+					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="modules/TOTP.html">TOTP</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-function">
+						<a href="modules.html#base32" class="tsd-kind-icon">base32</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

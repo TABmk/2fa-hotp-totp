@@ -16,6 +16,7 @@
   "version": "2.0.0",
   "description": "Zero dependency HOTP/TOTP 2FA",
   "main": "index.ts",
+  "types": "index.d.ts",
   "repository": "https://github.com/TABmk/2FA-HOTP-TOTP.git",
   "author": "TAB_mk <tabmk.contact@gmail.com>",
   "license": "MIT",

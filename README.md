@@ -34,10 +34,9 @@ You can compile .js files by command `yarn build` or `npm run build`
 And test code with `yarn test` or `npm test`
 
 ---
-# __v2 is here__ (almost)
+# __v2 is here__
 
 v2 brings better TypeScript support and some changes.
-And due I want to keep this package <1kB gzipped, I'll move types to DefinitelyTyped (you'll need to install types manually). I need some time to do that and I will not update the npm package until I have done it. Only the Github repository will be up to date.
 
 #### Changes
 - ⚠️ __Breaking__ ⚠️ New imports. Use only what you need. If you using v1 and want to migrate to v2, check `Usage > import`

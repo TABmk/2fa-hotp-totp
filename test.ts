@@ -25,3 +25,15 @@ console.log('TOTP code validator test (fake code passed, null = fail):', TOTP.va
 }));
 
 console.log('base32 converter (no padding)', base32('test'));
+
+const key = HOTP.generateKey(64);
+const algorithm = 'sha512';
+console.log('HOTP generate random key:', key);
+
+console.log('HOTP code generate with random key and algorithm:', HOTP.generate({ key, algorithm }));
+
+console.log('HOTP code validator test (sha512):', HOTP.validate({
+  token: HOTP.generate({ key, algorithm }),
+  key,
+  algorithm,
+}));

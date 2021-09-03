@@ -1,9 +1,10 @@
-import { createHmac, timingSafeEqual } from 'crypto';
+// @ts-ignore
+import { createHmac, timingSafeEqual, generateKeySync } from 'crypto';
 
 /**
  * https://datatracker.ietf.org/doc/html/rfc4226#section-5.1
  *
- * @param  8-byte counter value, the moving factor
+ * @param value 8-byte counter value, the moving factor
  * @return buffer
  */
 const calcCounter = (value: number) => {
@@ -16,19 +17,28 @@ const calcCounter = (value: number) => {
 };
 
 /**
+ * Generate random key with length
+ * @param {Number} length key. Default: 64
+ * @return {Buffer} key
+ */
+export const generateKey = (length = 64) => generateKeySync('hmac', { length }).export();
+
+/**
  * HOTP(K,C) = Truncate(HMAC-SHA-1(K,C))
  *
  * https://datatracker.ietf.org/doc/html/rfc4226#section-5.2
  *
  * @param key     unique secret key for user
+ * @param algorithm
  * @param counter moving factor. Default: 0
  * @return 6 digit code as a string
  */
-export const generate = ({ key, counter = 0 }: {
-  key: string,
+export const generate = ({ key, algorithm = 'sha1', counter = 0 }: {
+  key: string | Buffer,
+  algorithm?: string,
   counter?: number,
 }) => {
-  const hmac = createHmac('sha1', Buffer.from(key));
+  const hmac = createHmac(algorithm, Buffer.isBuffer(key) ? key : Buffer.from(key));
 
   const hmacUpdated = hmac.update(calcCounter(counter)).digest('hex');
 
@@ -46,9 +56,7 @@ export const generate = ({ key, counter = 0 }: {
   // length+1
   const codeLength = 7;
 
-  const result = new Array(codeLength - code.length).join('0') + code;
-
-  return result;
+  return new Array(codeLength - code.length).join('0') + code;
 };
 
 /**
@@ -56,6 +64,7 @@ export const generate = ({ key, counter = 0 }: {
  *
  * @param token   code, provided by user
  * @param key     unique secret key for user
+ * @param algorithm
  * @param window  counter values window. Default: 1
  * @param counter moving factor. Default: 0
  * @return null if nothing found or number between -window to +window if same code in steps found
@@ -63,11 +72,13 @@ export const generate = ({ key, counter = 0 }: {
 export const validate = ({
   token,
   key,
+  algorithm = 'sha1',
   window = 1,
   counter = 0,
 }: {
   token: string,
-  key: string,
+  key: string | Buffer,
+  algorithm?: string,
   window?: number,
   counter?: number,
 }): number | null => {
@@ -76,7 +87,7 @@ export const validate = ({
   for (let i = counter - window; i <= counter + window; ++i) {
     redefCounter = i;
 
-    const generateToken = generate({ key, counter: redefCounter });
+    const generateToken = generate({ key, algorithm, counter: redefCounter });
 
     if (timingSafeEqual(Buffer.from(token), Buffer.from(generateToken))) {
       return i - counter;

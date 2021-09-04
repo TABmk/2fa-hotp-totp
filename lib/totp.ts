@@ -23,22 +23,29 @@ export const generate = ({ key, algorithm = 'sha1', time = 30 }: {
 /**
  * https://datatracker.ietf.org/doc/html/rfc6238#section-5.2
  *
- * @param  token  code, provided by user
- * @param  key    unique secret key for user
- * @param  window counter values window. Default: 1
- * @param  time   time-step in seconds (default is recomended). Default: 30
+ * @param token  code, provided by user
+ * @param key    unique secret key for user
+ * @param algorithm custom algorithm for crypto.createHmac. Default: sha1
+ * @param window counter values window. Default: 1
+ * @param time   time-step in seconds (default is recomended). Default: 30
  * @return null if nothing found or number between -window to +window if same code in steps found
  */
 export const validate = ({
-  token, key, window = 1, time = 30,
+  token,
+  key,
+  algorithm = 'sha1',
+  window = 1,
+  time = 30,
 }: {
   token: string,
   key: string | Buffer,
+  algorithm?: string,
   window?: number,
   time?: number,
 }): number | null => HOTP.validate({
   token,
   key,
+  algorithm,
   window,
   counter: Math.floor(Date.now() / 1000 / time),
 });

@@ -37,7 +37,9 @@ export const generate = ({ key, algorithm = 'sha1', counter = 0 }: {
   const hmacResult = Buffer.from(hmacUpdated, 'hex');
 
   // https://datatracker.ietf.org/doc/html/rfc4226#section-5.4
-  const offset = hmacResult[19] & 0xf;
+  // RFC 6238 allow to use SHA256/512, that's why offset is not hmacResult[19]
+  // https://datatracker.ietf.org/doc/html/rfc6238#section-1.2
+  const offset = hmacResult[hmacResult.length - 1] & 0xf;
   const binCode = (hmacResult[offset] & 0x7f) << 24
     | (hmacResult[offset + 1] & 0xff) << 16
     | (hmacResult[offset + 2] & 0xff) << 8

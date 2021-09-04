@@ -11,7 +11,7 @@ __Help__ [<img src="https://img.shields.io/github/issues/tabmk/2fa-hotp-totp">](
 
 Zero-dependency <img src="https://badgen.net/bundlephobia/dependency-count/2fa-hotp-totp">
 
- v2 and still __<1kB gzipped__ <img src="https://badgen.net/bundlephobia/minzip/2fa-hotp-totp">
+__1kB gzipped__ <img src="https://badgen.net/bundlephobia/minzip/2fa-hotp-totp">
 
 My implementation of 2FA HOTP/TOTP algorithms in TypeScript + base32 encoder for creating links for authenticator programs like [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
 

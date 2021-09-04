@@ -13,7 +13,7 @@
     "test": "tsc test.ts && node test.js"
   },
   "name": "2fa-hotp-totp",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Zero dependency HOTP/TOTP 2FA",
   "main": "index.ts",
   "types": "index.d.ts",

@@ -1,14 +1,17 @@
+/// <reference types="node" />
 /**
  * TOTP = HOTP(K, T)
  *
  * https://datatracker.ietf.org/doc/html/rfc6238#section-4.2
  *
  * @param key  unique secret key for user
+ * @param algorithm custom algorithm for crypto.createHmac. Default: sha1
  * @param time time-step in seconds (default recomended). Default: 30
  * @return 6 digit code as a string
  */
-export declare const generate: ({ key, time }: {
-    key: string;
+export declare const generate: ({ key, algorithm, time }: {
+    key: string | Buffer;
+    algorithm?: string;
     time?: number;
 }) => string;
 /**
@@ -22,7 +25,7 @@ export declare const generate: ({ key, time }: {
  */
 export declare const validate: ({ token, key, window, time, }: {
     token: string;
-    key: string;
+    key: string | Buffer;
     window?: number;
     time?: number;
 }) => number | null;

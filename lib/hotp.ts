@@ -1,5 +1,4 @@
-// @ts-ignore
-import { createHmac, timingSafeEqual, generateKeySync } from 'crypto';
+import { createHmac, timingSafeEqual } from 'crypto';
 
 /**
  * https://datatracker.ietf.org/doc/html/rfc4226#section-5.1
@@ -17,20 +16,13 @@ const calcCounter = (value: number) => {
 };
 
 /**
- * Generate random key with length
- * @param {Number} length key. Default: 64
- * @return {Buffer} key
- */
-export const generateKey = (length = 64) => generateKeySync('hmac', { length }).export();
-
-/**
  * HOTP(K,C) = Truncate(HMAC-SHA-1(K,C))
  *
  * https://datatracker.ietf.org/doc/html/rfc4226#section-5.2
  *
- * @param key     unique secret key for user
- * @param algorithm
- * @param counter moving factor. Default: 0
+ * @param key       unique secret key for user
+ * @param algorithm custom algorithm for crypto.createHmac. Default: sha1
+ * @param counter   moving factor. Default: 0
  * @return 6 digit code as a string
  */
 export const generate = ({ key, algorithm = 'sha1', counter = 0 }: {
@@ -44,7 +36,7 @@ export const generate = ({ key, algorithm = 'sha1', counter = 0 }: {
 
   const hmacResult = Buffer.from(hmacUpdated, 'hex');
 
-  // https://tools.ietf.org/html/rfc4226 page 7 (5.4)
+  // https://datatracker.ietf.org/doc/html/rfc4226#section-5.4
   const offset = hmacResult[19] & 0xf;
   const binCode = (hmacResult[offset] & 0x7f) << 24
     | (hmacResult[offset + 1] & 0xff) << 16
@@ -62,11 +54,11 @@ export const generate = ({ key, algorithm = 'sha1', counter = 0 }: {
 /**
  * https://datatracker.ietf.org/doc/html/rfc4226#section-7.2
  *
- * @param token   code, provided by user
- * @param key     unique secret key for user
- * @param algorithm
- * @param window  counter values window. Default: 1
- * @param counter moving factor. Default: 0
+ * @param token     code, provided by user
+ * @param key       unique secret key for user
+ * @param algorithm custom algorithm for crypto.createHmac. Default: sha1
+ * @param window    counter values window. Default: 1
+ * @param counter   moving factor. Default: 0
  * @return null if nothing found or number between -window to +window if same code in steps found
  */
 export const validate = ({

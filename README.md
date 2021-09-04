@@ -17,7 +17,7 @@ __Help__ [<img src="https://img.shields.io/github/issues/tabmk/2fa-hotp-totp">](
 
 Zero-dependency <img src="https://badgen.net/bundlephobia/dependency-count/2fa-hotp-totp">
 
- v2 and still __<1kB gzipped__ <img src="https://badgen.net/bundlephobia/minzip/2fa-hotp-totp">
+**<1kB gzipped** <img src="https://badgen.net/bundlephobia/minzip/2fa-hotp-totp">
 
 My implementation of 2FA HOTP/TOTP algorithms in TypeScript + base32 encoder for creating links for authenticator programs like [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
 
@@ -33,22 +33,16 @@ You can compile .js files by command `yarn build` or `npm run build`
 
 And test code with `yarn test` or `npm test`
 
+Algorithm and length can be changed in example by passing args (both optional): `yarn test sha256 16`
+
 ---
-# __v2 is here__
+### Last changes
+##### Minor v2.1
+- New option for choosing algorithm (sha1/sha256/sha512)
+- Key now can be passed as Buffer
+- `generateKey` function
 
-v2 brings better TypeScript support and some changes.
-
-#### Changes
-- ⚠️ __Breaking__ ⚠️ New imports. Use only what you need. If you using v1 and want to migrate to v2, check `Usage > import`
-- TypeScript declaration
-- JSDoc's
-- `test` and `build` commands
-- Bugfixes
-
-### Use docs without leaving your editor
-
-<img src="img/2.jpg" />
-<img src="img/3.jpg" />
+Thanks [@intech](https://github.com/intech)
 
 ---
 
@@ -66,16 +60,17 @@ yarn add 2fa-hotp-totp
 
 #### Import
 ```
-import { HOTP, TOTP, base32 } from '2fa-hotp-totp';
+import { HOTP, TOTP, base32, generateKey } from '2fa-hotp-totp';
       OR
-const { HOTP, TOTP, base32 } = require('2fa-hotp-totp');
+const { HOTP, TOTP, base32, generateKey } = require('2fa-hotp-totp');
 ```
 #### HOTP
 ###### Generate
 ```
 HOTP.generate({
   key: 'test',
-  counter: 0, // optional
+  algorithm: 'sha512', // optional
+  counter: 0,          // optional
 });
 
 // => 941117
@@ -83,10 +78,11 @@ HOTP.generate({
 ###### Validate
 ```
 HOTP.validate({
-  token: '123123', // length must be 6
+  token: '123123',     // length must be 6
   key: 'test',
-  window: 1,       // optional
-  counter: 0,      // optional
+  algorithm: 'sha512', // optional
+  window: 1,           // optional
+  counter: 0,          // optional
 });
 
 // => time-step (number) or null
@@ -97,7 +93,8 @@ HOTP.validate({
 ```
 TOTP.generate({
   key: 'test',
-  time: 30, // optional
+  algorithm: 'sha512', // optional
+  time: 30,            // optional
 });
 
 // => 432486
@@ -105,10 +102,11 @@ TOTP.generate({
 ###### Validate
 ```
 TOTP.validate({
-  token: '123123', // length must be 6
+  token: '123123',     // length must be 6
   key: 'test',
-  window: 1,       // optional
-  time: 30,        // optional
+  algorithm: 'sha512', // optional
+  window: 1,           // optional
+  time: 30,            // optional
 });
 
 // => time-step (number) or null
@@ -120,6 +118,12 @@ base32('test');
 
 // => ORSXG5A
 ```
+#### generateKey
+```
+generateKey(64);
+
+// => <Buffer 51 84 24 8d 9a d7 2c 47>
+```
 
 ## __Description__
 
@@ -130,12 +134,15 @@ Implementation of [RFC 4226](https://datatracker.ietf.org/doc/html/rfc4226)
 
 *HOTP(K,C) = Truncate(HMAC-SHA-1(K,C))*
 
+*Since [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238), SHA256/SHA512 can be used for generating token
+
 ###### HOTP.generate
 Arguments (object):
 
 |obj.*|Required|Description|Default|
 |---|---|---|---|
 |`key`|✅|unique secret key for user||
+|`algorithm`|❌|custom algorithm for [crypto.createHmac](https://nodejs.org/api/crypto.html#crypto_crypto_createhmac_algorithm_key_options) (sha1/sha256/sha512)|sha1|
 |`counter`|❌|moving factor ([read page 6](https://datatracker.ietf.org/doc/html/rfc4226))|0|
 
 
@@ -148,6 +155,7 @@ Arguments (object):
 |---|---|---|---|
 |`token`|✅|code, provided by user||
 |`key`|✅|unique secret key for user||
+|`algorithm`|❌|custom algorithm for [crypto.createHmac](https://nodejs.org/api/crypto.html#crypto_crypto_createhmac_algorithm_key_options) (sha1/sha256/sha512)|sha1|
 |`window`|❌|counter values window|1|
 |`counter`|❌|moving factor ([read page 6](https://datatracker.ietf.org/doc/html/rfc4226))|0|
 
@@ -173,6 +181,7 @@ Arguments (object):
 |obj.*|Required|Description|Default|
 |---|---|---|---|
 |`key`|✅|unique secret key for user||
+|`algorithm`|❌|custom algorithm for [crypto.createHmac](https://nodejs.org/api/crypto.html#crypto_crypto_createhmac_algorithm_key_options) (sha1/sha256/sha512)|sha1|
 |`time`|❌|time-step in seconds (default recomended)|30|
 
 Returns **string** of 6 digit, because it must be always 6 digit length and first can be zero
@@ -184,9 +193,28 @@ Arguments (object):
 |---|---|---|---|
 |`token`|✅|code, provided by user||
 |`key`|✅|unique secret key for user||
+|`algorithm`|❌|custom algorithm for [crypto.createHmac](https://nodejs.org/api/crypto.html#crypto_crypto_createhmac_algorithm_key_options) (sha1/sha256/sha512)|sha1|
 |`window`|❌|counter values window|1|
 |`time`|❌|time-step in seconds (default recomended)|30|
 
 Returns **null** if nothing found or number between `-window to +window` if same code in steps found
 
 [👆 What is `window`](#what-is-window)
+
+#### base32
+Implementation of [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648) without paddings (thanks to [@LinusU](https://github.com/LinusU))
+
+Can take secret as `string` or `Buffer`
+
+Returns base32 encoded secret as `string`
+
+#### generateKey
+Generate random key with length
+
+Optional param `length` (`number`)
+
+Returns hmac as `Buffer` from `generateKeySync`
+
+## Special thanks
+To all contributors
+ - [@intech](https://github.com/intech)

@@ -73,7 +73,7 @@
 					<h1><strong>2FA-HOTP-TOTP</strong></h1>
 				</a>
 				<p>Zero-dependency <img src="https://badgen.net/bundlephobia/dependency-count/2fa-hotp-totp"></p>
-				<p> v2 and still <strong>&lt;1kB gzipped</strong> <img src="https://badgen.net/bundlephobia/minzip/2fa-hotp-totp"></p>
+				<p><strong>1kB gzipped</strong> <img src="https://badgen.net/bundlephobia/minzip/2fa-hotp-totp"></p>
 				<p>My implementation of 2FA HOTP/TOTP algorithms in TypeScript + base32 encoder for creating links for authenticator programs like <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Google Authenticator</a></p>
 				<p><a href="https://github.com/google/google-authenticator/wiki/Key-Uri-Format">Read more</a> about <code>otpauth://</code> links</p>
 				<a href="#specifications" id="specifications" style="color: inherit; text-decoration: none;">
@@ -87,26 +87,20 @@
 				<hr>
 				<p>You can compile .js files by command <code>yarn build</code> or <code>npm run build</code></p>
 				<p>And test code with <code>yarn test</code> or <code>npm test</code></p>
+				<p>Algorithm and length can be changed in example by passing args (both optional): <code>yarn test sha256 16</code></p>
 				<hr>
-				<a href="#v2-is-here-almost" id="v2-is-here-almost" style="color: inherit; text-decoration: none;">
-					<h1><strong>v2 is here</strong></h1>
+				<a href="#last-changes" id="last-changes" style="color: inherit; text-decoration: none;">
+					<h3>Last changes</h3>
 				</a>
-				<p>v2 brings better TypeScript support and some changes.</p>
-				<a href="#changes" id="changes" style="color: inherit; text-decoration: none;">
-					<h4>Changes</h4>
+				<a href="#minor-v21" id="minor-v21" style="color: inherit; text-decoration: none;">
+					<h5>Minor v2.1</h5>
 				</a>
 				<ul>
-					<li>⚠️ <strong>Breaking</strong> ⚠️ New imports. Use only what you need. If you using v1 and want to migrate to v2, check <code>Usage &gt; import</code></li>
-					<li>TypeScript declaration</li>
-					<li>JSDoc&#39;s</li>
-					<li><code>test</code> and <code>build</code> commands</li>
-					<li>Bugfixes</li>
+					<li>New option for choosing algorithm (sha1/sha256/sha512)</li>
+					<li>Key now can be passed as Buffer</li>
+					<li><code>generateKey</code> function</li>
 				</ul>
-				<a href="#use-docs-without-leaving-your-editor" id="use-docs-without-leaving-your-editor" style="color: inherit; text-decoration: none;">
-					<h3>Use docs without leaving your editor</h3>
-				</a>
-				<img src="img/2.jpg" />
-				<img src="img/3.jpg" />
+				<p>Thanks <a href="https://github.com/intech">@intech</a></p>
 				<hr>
 				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
 					<h2><strong>Install</strong></h2>
@@ -123,9 +117,9 @@
 				<a href="#import" id="import" style="color: inherit; text-decoration: none;">
 					<h4>Import</h4>
 				</a>
-				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">HOTP</span><span style="color: #000000">, </span><span style="color: #001080">TOTP</span><span style="color: #000000">, </span><span style="color: #001080">base32</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;2fa-hotp-totp&#039;</span><span style="color: #000000">;</span>
+				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">HOTP</span><span style="color: #000000">, </span><span style="color: #001080">TOTP</span><span style="color: #000000">, </span><span style="color: #001080">base32</span><span style="color: #000000">, </span><span style="color: #001080">generateKey</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;2fa-hotp-totp&#039;</span><span style="color: #000000">;</span>
 <span style="color: #000000">      </span><span style="color: #0070C1">OR</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">HOTP</span><span style="color: #000000">, </span><span style="color: #0070C1">TOTP</span><span style="color: #000000">, </span><span style="color: #0070C1">base32</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;2fa-hotp-totp&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">HOTP</span><span style="color: #000000">, </span><span style="color: #0070C1">TOTP</span><span style="color: #000000">, </span><span style="color: #0070C1">base32</span><span style="color: #000000">, </span><span style="color: #0070C1">generateKey</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;2fa-hotp-totp&#039;</span><span style="color: #000000">);</span>
 </code></pre>
 				<a href="#hotp" id="hotp" style="color: inherit; text-decoration: none;">
 					<h4>HOTP</h4>
@@ -135,7 +129,8 @@
 				</a>
 				<pre><code><span style="color: #0070C1">HOTP</span><span style="color: #000000">.</span><span style="color: #795E26">generate</span><span style="color: #000000">({</span>
 <span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">counter:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">algorithm:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sha512&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">counter:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">,          </span><span style="color: #008000">// optional</span>
 <span style="color: #000000">});</span>
 
 <span style="color: #008000">// =&gt; 941117</span>
@@ -144,10 +139,11 @@
 					<h6>Validate</h6>
 				</a>
 				<pre><code><span style="color: #0070C1">HOTP</span><span style="color: #000000">.</span><span style="color: #795E26">validate</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #001080">token:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;123123&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// length must be 6</span>
+<span style="color: #000000">  </span><span style="color: #001080">token:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;123123&#039;</span><span style="color: #000000">,     </span><span style="color: #008000">// length must be 6</span>
 <span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">window:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,       </span><span style="color: #008000">// optional</span>
-<span style="color: #000000">  </span><span style="color: #001080">counter:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">,      </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">algorithm:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sha512&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">window:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,           </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">counter:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">,          </span><span style="color: #008000">// optional</span>
 <span style="color: #000000">});</span>
 
 <span style="color: #008000">// =&gt; time-step (number) or null</span>
@@ -160,7 +156,8 @@
 				</a>
 				<pre><code><span style="color: #0070C1">TOTP</span><span style="color: #000000">.</span><span style="color: #795E26">generate</span><span style="color: #000000">({</span>
 <span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">time:</span><span style="color: #000000"> </span><span style="color: #098658">30</span><span style="color: #000000">, </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">algorithm:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sha512&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">time:</span><span style="color: #000000"> </span><span style="color: #098658">30</span><span style="color: #000000">,            </span><span style="color: #008000">// optional</span>
 <span style="color: #000000">});</span>
 
 <span style="color: #008000">// =&gt; 432486</span>
@@ -169,10 +166,11 @@
 					<h6>Validate</h6>
 				</a>
 				<pre><code><span style="color: #0070C1">TOTP</span><span style="color: #000000">.</span><span style="color: #795E26">validate</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #001080">token:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;123123&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// length must be 6</span>
+<span style="color: #000000">  </span><span style="color: #001080">token:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;123123&#039;</span><span style="color: #000000">,     </span><span style="color: #008000">// length must be 6</span>
 <span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">window:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,       </span><span style="color: #008000">// optional</span>
-<span style="color: #000000">  </span><span style="color: #001080">time:</span><span style="color: #000000"> </span><span style="color: #098658">30</span><span style="color: #000000">,        </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">algorithm:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sha512&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">window:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000">,           </span><span style="color: #008000">// optional</span>
+<span style="color: #000000">  </span><span style="color: #001080">time:</span><span style="color: #000000"> </span><span style="color: #098658">30</span><span style="color: #000000">,            </span><span style="color: #008000">// optional</span>
 <span style="color: #000000">});</span>
 
 <span style="color: #008000">// =&gt; time-step (number) or null</span>
@@ -184,6 +182,13 @@
 
 <span style="color: #008000">// =&gt; ORSXG5A</span>
 </code></pre>
+				<a href="#generatekey" id="generatekey" style="color: inherit; text-decoration: none;">
+					<h4>generateKey</h4>
+				</a>
+				<pre><code><span style="color: #795E26">generateKey</span><span style="color: #000000">(</span><span style="color: #098658">64</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// =&gt; &lt;Buffer 51 84 24 8d 9a d7 2c 47&gt;</span>
+</code></pre>
 				<a href="#description" id="description" style="color: inherit; text-decoration: none;">
 					<h2><strong>Description</strong></h2>
 				</a>
@@ -193,6 +198,7 @@
 				</a>
 				<p>Implementation of <a href="https://datatracker.ietf.org/doc/html/rfc4226">RFC 4226</a></p>
 				<p><em>HOTP(K,C) = Truncate(HMAC-SHA-1(K,C))</em></p>
+				<p>*Since <a href="https://datatracker.ietf.org/doc/html/rfc6238">RFC 6238</a>, SHA256/SHA512 can be used for generating token</p>
 				<a href="#hotpgenerate" id="hotpgenerate" style="color: inherit; text-decoration: none;">
 					<h6>HOTP.generate</h6>
 				</a>
@@ -211,6 +217,12 @@
 							<td>✅</td>
 							<td>unique secret key for user</td>
 							<td></td>
+						</tr>
+						<tr>
+							<td><code>algorithm</code></td>
+							<td>❌</td>
+							<td>custom algorithm for <a href="https://nodejs.org/api/crypto.html#crypto_crypto_createhmac_algorithm_key_options">crypto.createHmac</a> (sha1/sha256/sha512)</td>
+							<td>sha1</td>
 						</tr>
 						<tr>
 							<td><code>counter</code></td>
@@ -244,6 +256,12 @@
 							<td>✅</td>
 							<td>unique secret key for user</td>
 							<td></td>
+						</tr>
+						<tr>
+							<td><code>algorithm</code></td>
+							<td>❌</td>
+							<td>custom algorithm for <a href="https://nodejs.org/api/crypto.html#crypto_crypto_createhmac_algorithm_key_options">crypto.createHmac</a> (sha1/sha256/sha512)</td>
+							<td>sha1</td>
 						</tr>
 						<tr>
 							<td><code>window</code></td>
@@ -293,6 +311,12 @@
 							<td></td>
 						</tr>
 						<tr>
+							<td><code>algorithm</code></td>
+							<td>❌</td>
+							<td>custom algorithm for <a href="https://nodejs.org/api/crypto.html#crypto_crypto_createhmac_algorithm_key_options">crypto.createHmac</a> (sha1/sha256/sha512)</td>
+							<td>sha1</td>
+						</tr>
+						<tr>
 							<td><code>time</code></td>
 							<td>❌</td>
 							<td>time-step in seconds (default recomended)</td>
@@ -326,6 +350,12 @@
 							<td></td>
 						</tr>
 						<tr>
+							<td><code>algorithm</code></td>
+							<td>❌</td>
+							<td>custom algorithm for <a href="https://nodejs.org/api/crypto.html#crypto_crypto_createhmac_algorithm_key_options">crypto.createHmac</a> (sha1/sha256/sha512)</td>
+							<td>sha1</td>
+						</tr>
+						<tr>
 							<td><code>window</code></td>
 							<td>❌</td>
 							<td>counter values window</td>
@@ -340,6 +370,25 @@
 				</tbody></table>
 				<p>Returns <strong>null</strong> if nothing found or number between <code>-window to +window</code> if same code in steps found</p>
 				<p><a href="#what-is-window">👆 What is <code>window</code></a></p>
+				<a href="#base32-1" id="base32-1" style="color: inherit; text-decoration: none;">
+					<h4>base32</h4>
+				</a>
+				<p>Implementation of <a href="https://datatracker.ietf.org/doc/html/rfc4648">RFC 4648</a> without paddings (thanks to <a href="https://github.com/LinusU">@LinusU</a>)</p>
+				<p>Can take secret as <code>string</code> or <code>Buffer</code></p>
+				<p>Returns base32 encoded secret as <code>string</code></p>
+				<a href="#generatekey-1" id="generatekey-1" style="color: inherit; text-decoration: none;">
+					<h4>generateKey</h4>
+				</a>
+				<p>Generate random key with length</p>
+				<p>Optional param <code>length</code> (<code>number</code>)</p>
+				<p>Returns hmac as <code>Buffer</code> from <code>generateKeySync</code></p>
+				<a href="#special-thanks" id="special-thanks" style="color: inherit; text-decoration: none;">
+					<h2>Special thanks</h2>
+				</a>
+				<p>To all contributors</p>
+				<ul>
+					<li><a href="https://github.com/intech">@intech</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -360,6 +409,9 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-function">
 						<a href="modules.html#base32" class="tsd-kind-icon">base32</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#generateKey" class="tsd-kind-icon">generate<wbr>Key</a>
 					</li>
 				</ul>
 			</nav>

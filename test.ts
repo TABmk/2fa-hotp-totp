@@ -37,3 +37,5 @@ console.log('HOTP code validator test (sha512):', HOTP.validate({
   key,
   algorithm,
 }));
+
+console.log('base32 converter (no padding)', base32(key));

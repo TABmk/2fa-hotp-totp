@@ -4,10 +4,10 @@
  * @return base32 encoded secret
  */
 // eslint-disable-next-line
-export const base32 = (secret: string) => {
+export const base32 = (secret: string | Buffer) => {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 
-  const buf = Buffer.from(secret);
+  const buf = Buffer.isBuffer(secret) ? secret : Buffer.from(secret);
 
   const arr = new Uint8Array(buf);
 

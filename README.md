@@ -37,6 +37,10 @@ Algorithm and length can be changed in example by passing args (both optional): 
 
 ---
 ### Last changes
+##### Patch v2.1.1
+- Fixed `DeprecationWarning` warning
+- Removed useless files from npm version
+
 ##### Minor v2.1
 - New option for choosing algorithm (sha1/sha256/sha512)
 - Key now can be passed as Buffer

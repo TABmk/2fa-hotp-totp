@@ -19,7 +19,10 @@ Zero-dependency <img src="https://badgen.net/bundlephobia/dependency-count/2fa-h
 
 **<1kB gzipped** <img src="https://badgen.net/bundlephobia/minzip/2fa-hotp-totp">
 
+#### The minimum version of Node.js required is 15 ⚠️
+
 My implementation of 2FA HOTP/TOTP algorithms in TypeScript + base32 encoder for creating links for authenticator programs like [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
+
 
 [Read more](https://github.com/google/google-authenticator/wiki/Key-Uri-Format) about `otpauth://` links
 ###### Specifications:
@@ -37,6 +40,9 @@ Algorithm and length can be changed in example by passing args (both optional): 
 
 ---
 ### Last changes
+
+##### Patch v2.1.2
+- Added info about NodeJS version ([issue #3](https://github.com/TABmk/2fa-hotp-totp/issues/3))
 ##### Patch v2.1.1
 - Fixed `DeprecationWarning` warning
 - Removed useless files from npm version

@@ -7,14 +7,20 @@ __Help__ [<img src="https://img.shields.io/github/issues/tabmk/2fa-hotp-totp">](
 
 #### __Rate me__ [<img src="https://img.shields.io/github/stars/tabmk/2fa-hotp-totp?style=social">](https://github.com/TABmk/2fa-hotp-totp)
 
+<p align="center">
+   <img src="img/1.png" />
+ </p>
+
 # __2FA-HOTP-TOTP__
 
 Zero-dependency <img src="https://badgen.net/bundlephobia/dependency-count/2fa-hotp-totp">
 
 __1kB gzipped__ <img src="https://badgen.net/bundlephobia/minzip/2fa-hotp-totp">
 
+#### The minimum version of Node.js required is 15 ⚠️
+
 My implementation of 2FA HOTP/TOTP algorithms in TypeScript + base32 encoder for creating links for authenticator programs like [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
 
 ### Full documentation 👇
 
-https://tabmk.github.io/2FA-HOTP-TOTP/
+https://tabmk.github.io/2fa-hotp-totp/

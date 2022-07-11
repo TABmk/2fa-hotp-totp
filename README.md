@@ -40,7 +40,10 @@ Algorithm and length can be changed in example by passing args (both optional): 
 
 ---
 ### Last changes
+##### Patch v2.1.3
+- HOTP token length validation ([pull request #4](https://github.com/TABmk/2fa-hotp-totp/pull/4))
 
+Thanks [@intech](https://github.com/intech)
 ##### Patch v2.1.2
 - Added info about NodeJS version ([issue #3](https://github.com/TABmk/2fa-hotp-totp/issues/3))
 ##### Patch v2.1.1

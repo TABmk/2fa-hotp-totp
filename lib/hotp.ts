@@ -83,7 +83,10 @@ export const validate = ({
 
     const generateToken = generate({ key, algorithm, counter: redefCounter });
 
-    if (Buffer.byteLength(token) === Buffer.byteLength(generateToken) && timingSafeEqual(Buffer.from(token), Buffer.from(generateToken))) {
+    if (
+      Buffer.byteLength(token) === Buffer.byteLength(generateToken)
+      && timingSafeEqual(Buffer.from(token), Buffer.from(generateToken))
+    ) {
       return i - counter;
     }
   }

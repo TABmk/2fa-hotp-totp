@@ -1,4 +1,6 @@
-yarn.lock
-/node_modules
+node_modules
 .DS_Store
+**/.DS_Store
 *.js
+gh-pages
+npm

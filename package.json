@@ -1,28 +1,43 @@
 {
   "devDependencies": {
-    "@types/node": "^14.14.25",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "eslint": "^7.29.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-airbnb-typescript": "^12.3.1",
-    "eslint-plugin-import": "^2.23.4",
-    "typescript": "^4.3.4"
+    "@types/node": "^18.11.17",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "minify": "^9.1.0",
+    "typedoc": "^0.23.23",
+    "typescript": "^4.9.4"
   },
   "scripts": {
-    "build": "tsc index.ts",
+    "lint": "eslint",
+    "docs": "typedoc --tsconfig tsconfig.eslint.json",
+    "build": "tsc --project tsconfig.eslint.json",
+    "npm": "eval $(cat prep-npm.sh)",
+    "npm-package": "node package-npm",
     "test": "tsc test.ts && node test.js"
   },
   "name": "2fa-hotp-totp",
-  "version": "2.1.3",
-  "description": "Zero dependency HOTP/TOTP 2FA",
+  "version": "3.0.0",
+  "description": "Zero dependency HOTP/TOTP 2FA. Deno, browser and Node.JS!",
   "main": "index.ts",
   "types": "index.d.ts",
-  "repository": "https://github.com/TABmk/2FA-HOTP-TOTP.git",
+  "repository": "https://github.com/TABmk/2fa-hotp-totp.git",
+  "homepage": "https://github.com/TABmk/2fa-hotp-totp.git",
+  "bugs": "https://github.com/TABmk/2fa-hotp-totp/issues",
   "author": "TAB_mk <tabmk.contact@gmail.com>",
   "license": "MIT",
   "keywords": [
     "2FA",
     "HOTP",
-    "TOTP"
+    "TOTP",
+    "otp",
+    "auth",
+    "authenticator",
+    "hmac",
+    "two-factor",
+    "google authenticator"
   ]
 }

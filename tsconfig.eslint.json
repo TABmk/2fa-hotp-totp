@@ -5,6 +5,7 @@
     ".eslintrc"
   ],
   "compilerOptions": {
-    "declaration": true
+    "declaration": true,
+    "outDir": "./npm"
   }
 }

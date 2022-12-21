@@ -3,7 +3,7 @@ import {
   TOTP,
   base32,
   generateKey,
-} from './index';
+} from '../index';
 
 const algorithm = process.argv[2] || 'sha512';
 const length = Number(process.argv[3]) || 64;

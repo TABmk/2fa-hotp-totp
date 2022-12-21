@@ -1,4 +1,3 @@
-// @ts-ignore TODO update @types/node to v15
 import { generateKeySync } from 'crypto';
 
 /**

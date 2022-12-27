@@ -12,4 +12,5 @@ yarn --cwd ./npm pack -s &&
 echo "📈 Size: $(wc -c < $(ls ./npm/*.tgz))b" &&
 rm -rf ./npm/*.tgz &&
 yarn docs &> /dev/null &&
-echo "📖 Docs: file:///Users/tab_mk/my/2FA-HOTP-TOTP/gh-pages/index.html"
+cp -r img ./gh-pages/img &&
+echo "📖 Docs: file://$(pwd)/gh-pages/index.html"
